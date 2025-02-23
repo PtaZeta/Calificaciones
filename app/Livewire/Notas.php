@@ -53,23 +53,23 @@ class Notas extends Component
     }
 
     public function editarNota($id)
-{
-    $nota = Nota::find($id);
-    if ($nota) {
-        $this->nota_id = $nota->id;
-        $this->trimestre = $nota->trimestre;
-        $this->nota = $nota->nota;
-        $this->asignatura_id = $nota->asignatura_id;
+    {
+        $nota = Nota::find($id);
+        if ($nota) {
+            $this->nota_id = $nota->id;
+            $this->trimestre = $nota->trimestre;
+            $this->nota = $nota->nota;
+            $this->asignatura_id = $nota->asignatura_id;
 
-        $asignatura = Asignatura::find($nota->asignatura_id);
+            $asignatura = Asignatura::find($nota->asignatura_id);
 
-        if ($asignatura) {
-            $this->trimestres = range(1, intval($asignatura->numero_trimestres));
-        } else {
-            $this->trimestres = [];
+            if ($asignatura) {
+                $this->trimestres = range(1, intval($asignatura->numero_trimestres));
+            } else {
+                $this->trimestres = [];
+            }
         }
     }
-}
 
 
 
@@ -97,8 +97,7 @@ class Notas extends Component
     public function render()
     {
         return view('livewire.notas.notas', [
-            'alumnos' => Alumno::where('nombre', 'like', '%' . $this->alumno_nombre . '%')->pluck('nombre')->toArray(), // Solo nombres
-            'asignaturas' => Asignatura::all(),
+            'alumnos' => Alumno::where('nombre', 'like', '%' . $this->alumno_nombre . '%')->pluck('nombre')->toArray(),
             'notas' => Nota::with(['asignatura', 'alumno'])->get(),
         ])->layout('layouts.app');
     }
