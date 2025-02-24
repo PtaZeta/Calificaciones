@@ -99,6 +99,7 @@ class Notas extends Component
         return view('livewire.notas.notas', [
             'alumnos' => Alumno::where('nombre', 'like', '%' . $this->alumno_nombre . '%')->pluck('nombre')->toArray(),
             'notas' => Nota::with(['asignatura', 'alumno'])->get(),
+            'asignaturas' => Asignatura::all(),
         ])->layout('layouts.app');
     }
 }
