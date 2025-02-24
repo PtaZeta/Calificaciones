@@ -8,11 +8,13 @@
             <label class="block text-sm font-medium mb-1">Buscar Alumno:</label>
             <input type="text" list="alumnos" wire:model="alumno_nombre" placeholder="Escribe el nombre del alumno"
                 class="w-full p-2 bg-gray-700 border border-gray-600 text-black rounded focus:ring focus:ring-green-400">
+
+            {{--MUESTRA UN REGISTRO DE LOS USUARIOS PUESTOS EN EL INPUT
             <datalist id="alumnos">
                 @foreach($alumnos as $nombre)
                     <option value="{{ $nombre }}"></option>
                 @endforeach
-            </datalist>
+            </datalist> --}}
         </div>
 
         <!-- Seleccionar Asignatura -->
@@ -28,7 +30,6 @@
         </div>
 
         <!-- Seleccionar Trimestre -->
-        @if(!empty($trimestres))
         <div>
             <label class="block text-sm font-medium mb-1">Trimestre:</label>
             <select wire:model="trimestre"
@@ -39,7 +40,7 @@
                 @endforeach
             </select>
         </div>
-        @endif
+
 
         <!-- Seleccionar Nota -->
         <div>

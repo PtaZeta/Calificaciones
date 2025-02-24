@@ -40,6 +40,16 @@ class Notas extends Component
 
         $validated['alumno_id'] = $alumno->id;
 
+
+        $existeNota = Nota::where('alumno_id', $alumno->id)
+        ->where('asignatura_id', $validated['asignatura_id'])
+        ->where('trimestre', $validated['trimestre'])
+        ->exists();
+
+        if ($existeNota) {
+            return;
+        }
+
         Nota::create($validated);
 
         $this->reset(['asignatura_id', 'trimestres', 'trimestre', 'nota', 'alumno_nombre']);

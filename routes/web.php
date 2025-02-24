@@ -14,6 +14,8 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::view('finales/index', 'finales.index')->name('finales.index');
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
